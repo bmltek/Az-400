@@ -1,0 +1,100 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "CoreServices/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/CoreServices.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/CoreServices.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CoreServices/1.0.0": {
+      "sha512": "pCmyO7x2TrdCkFpqaN8vTa9iuIJTOnQ05u1k8FaS6ibEMKoV5o0fYJfjzkBobGWxH22EbFVffHQMX4Wl6wT9Tg==",
+      "type": "package",
+      "path": "coreservices/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "coreservices.1.0.0.nupkg.sha512",
+        "coreservices.nuspec",
+        "lib/net6.0/CoreServices.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "CoreServices >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Alan\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\tmp1\\ConsumePackage\\ConsumePackage\\ConsumePackage.csproj",
+      "projectName": "ConsumePackage",
+      "projectPath": "D:\\tmp1\\ConsumePackage\\ConsumePackage\\ConsumePackage.csproj",
+      "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
+      "outputPath": "D:\\tmp1\\ConsumePackage\\ConsumePackage\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/techsup4000/DevProject/_packaging/DevProjectFeed/nuget/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "CoreServices": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

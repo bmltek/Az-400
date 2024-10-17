@@ -1,0 +1,23 @@
+1. Create vm on azure (ubuntu)
+2. login to the vm with mobaxterm
+3. Install Docker on Ubuntu via the following URL
+https://docs.docker.com/engine/install/ubuntu/
+4. publish build of the project from virtual studio to folder on your laptop
+5. use WinSCP to copy publish folder to the vm
+6. cd publish (go to the path)
+7. copy the dockerfile into the publish folder, where we have sqlapp.dll
+8. The following command can be used to build a custom image
+9. sudo docker build -t sqlapp .   #This will be the docker image based on the Dockerfile and .NET Core app
+ sudo docker images
+10 Install azure cli
+- Create ACR
+Access token -> enable `Admin User` -> copy password
+11. sudo az acr login --name app2456  --username app2456 --password <>
+sudo docker tag sqlapp appregistry234.azurecr.io/sqlapp:1.0
+sudo docker push appregistry234.azurecr.io/sqlapp:1.0
+
+# deploy image in ACR to azure container instance
+- Networking -> public 
+- Port -> 80
+- image source -> ACR
+# deploy image in ACR to AKS

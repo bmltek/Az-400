@@ -1,0 +1,101 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "SQLLogin": {
+            "type": "string",
+            "metadata": {
+                "description": "The administrator user name"
+            }
+        },
+        "SQLPassword": {
+           "type": "securestring",
+           "metadata": {
+            "description": "The Administrator Password"
+           }
+        }
+    },
+    "functions": [],
+    "variables": {
+    },
+    "resources": [
+        {
+            "name": "boniton86",
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2023-01-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "F1",
+                "capacity": 1
+            },
+            "tags": {
+                "displayName": "boniton86"
+            },
+            "properties": {
+                "name": "boniton86"
+            }
+        },
+        {
+            "name": "divdavapp",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2023-01-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
+                "displayName": "divdavapp"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', 'boniton86')]"
+            ],
+            "properties": {
+                "name": "divdavapp",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'boniton86')]"
+            }
+        },
+        {
+            "name": "childTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+            "name": "boniton",
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2021-11-01",
+            "location": "[resourceGroup().location]",
+            
+            "properties": {
+                "administratorLogin": "[parameters('SQLLogin')]",
+                "administratorLoginPassword": "[parameters('SQLPassword')]"
+            }
+        },
+        {
+            "name": "[format('{0}/{1}','boniton','boniton')]",
+            "type": "Microsoft.Sql/servers/databases",
+            "apiVersion": "2021-11-01",
+            "location": "[resourceGroup().location]",
+            "sku":{
+               "name": "Basic",
+               "tier": "Basic"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', 'boniton')]"
+            ],
+            "properties": {}
+            
+        }
+                    ]
+                }
+            }
+        }
+
+    ],
+    "outputs": {}
+}

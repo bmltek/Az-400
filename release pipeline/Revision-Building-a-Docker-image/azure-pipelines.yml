@@ -1,0 +1,97 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  - main
+  
+resources:
+  - repo: self
+  
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '30a3fd26-384c-4fef-b59c-869a05e908ad'
+  imageRepository: 'webappbml'
+  containerRegistry: 'web45app.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+  buildConfiguration: 'Release'  # Added this line to ensure proper build configuration
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    container: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'restore'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
+          projects: '**/*.csproj'
+          arguments: '--configuration $(buildConfiguration)'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+      - publish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'Publish build artifacts'
+        artifact: buildartifacts
+      
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
+    - download: current
+      artifact: buildartifacts
+
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        buildContext: '$(Pipeline.Workspace)/buildartifacts'  # Updated to use the correct artifact path
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+     # you can publish directly to release pipeline or you do direct deployment to kubernetes
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish source files for further stages'
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'sourcefiles'
+        publishLocation: 'pipeline'
+        
+    # - task: KubernetesManifest@0
+    #   inputs:
+    #     action: 'deploy'
+    #     kubernetesServiceConnection: 'kubernetes-connection' # service connection for the AKS cluster on Azure devops
+    #     manifests: |
+    #       $(Build.ArtifactStagingDirectory)/sqlapp/manifests/app.yml # path to the manifest files
+    #       $(Build.ArtifactStagingDirectory)/sqlapp/manifests/service.yml

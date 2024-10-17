@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+steps:
+# tasks to download azure key vaults secret
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'Azure subscription 1 (6912d7a0-bc28-459a-9407-33bbba641c07)'
+    KeyVaultName: 'appvault787878'
+    # the * makes the secret available to the job
+    SecretsFilter: '*'
+    RunAsPreJob: false
+# created  dbpassword in azure key vault  
+# accessing it from yml pipelines
+- script: |
+      echo $(dbpassword)

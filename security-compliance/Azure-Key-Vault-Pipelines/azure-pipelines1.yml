@@ -1,0 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+steps:
+
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'Azure subscription 1 (6912d7a0-bc28-459a-9407-33bbba641c07)'
+    KeyVaultName: 'appvault787878'
+    SecretsFilter: '*'
+    RunAsPreJob: false
+  
+- script: |
+      echo $(dbpassword) > dbpassword.txt
+# copy the .txt file to target folder
+- task: CopyFiles@2
+  inputs:
+    Contents: dbpassword.txt
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'secrets'
+    publishLocation: 'Container'

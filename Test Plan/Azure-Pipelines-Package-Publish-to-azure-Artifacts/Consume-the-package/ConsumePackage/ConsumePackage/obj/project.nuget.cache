@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wjdbhrXZzCmRfGb8iE0noycUmxgG2s5k5pFftUfnpaDtpkVAu0f09eQI0lE3xEV3DG6YBaLOZ65PAN2XpDoCNQ==",
+  "success": true,
+  "projectFilePath": "D:\\tmp1\\ConsumePackage\\ConsumePackage\\ConsumePackage.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alan\\.nuget\\packages\\coreservices\\1.0.0\\coreservices.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

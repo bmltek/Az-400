@@ -1,0 +1,7 @@
+az resource delete -g template-rg -n "boniton/boniton" --resource-type "Microsoft.Sql/servers/databases"
+
+az resource delete -g template-rg -n "boniton" --resource-type "Microsoft.Sql/servers"
+
+az resource delete -g template-rg -n boniton86 --resource-type "Microsoft.Web/sites"
+
+az resource delete -g template-rg -n divdavapp --resource-type "Microsoft.Web/serverfarms"

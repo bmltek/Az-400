@@ -1,0 +1,23 @@
+# How to Implement self-hosted Agent
+
+- create windows server 2019 Virtual Machine
+- connect with RDP
+- download git and install (64 bit)
+- search `.net download` 6.0 and install it
+- login to azure devops on the vm
+- generate personal access token for the agen to be able to authenticate itself
+  - personal access token -> new token -> give `agent pool` permissions -> create ->copt to nodepad on the vm
+- organization settings -> agent pool -> Default (you can also create your own agent pool) -> new agent (click) -> download the agent -> copy download file and past on c-drive -> extract the file
+- open windows powershell -> cd .. cd .. cd vsts (press tab)
+  - ./config.cmd (this will start the configuration process`)
+  - server url : url for organization
+  - click enter
+  - authentication type: paste the personal access token
+  - click enter
+  - click enter
+  - go to c-drive -> create new folder (work)
+  - C:\work
+  - yes `run agent as service`
+  - yes
+  - enter, enter
+- register agent

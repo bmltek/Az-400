@@ -1,0 +1,12 @@
+D:\tmp1\CoreServices\CoreServices\bin\Debug\net6.0\CoreServices.deps.json
+D:\tmp1\CoreServices\CoreServices\bin\Debug\net6.0\CoreServices.dll
+D:\tmp1\CoreServices\CoreServices\bin\Debug\net6.0\CoreServices.pdb
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.csproj.AssemblyReference.cache
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.GeneratedMSBuildEditorConfig.editorconfig
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.AssemblyInfoInputs.cache
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.AssemblyInfo.cs
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.csproj.CoreCompileInputs.cache
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.dll
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\refint\CoreServices.dll
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\CoreServices.pdb
+D:\tmp1\CoreServices\CoreServices\obj\Debug\net6.0\ref\CoreServices.dll

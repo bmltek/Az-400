@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsumePackage/1.0.0": {
+        "dependencies": {
+          "CoreServices": "1.0.0"
+        },
+        "runtime": {
+          "ConsumePackage.dll": {}
+        }
+      },
+      "CoreServices/1.0.0": {
+        "runtime": {
+          "lib/net6.0/CoreServices.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsumePackage/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CoreServices/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pCmyO7x2TrdCkFpqaN8vTa9iuIJTOnQ05u1k8FaS6ibEMKoV5o0fYJfjzkBobGWxH22EbFVffHQMX4Wl6wT9Tg==",
+      "path": "coreservices/1.0.0",
+      "hashPath": "coreservices.1.0.0.nupkg.sha512"
+    }
+  }
+}

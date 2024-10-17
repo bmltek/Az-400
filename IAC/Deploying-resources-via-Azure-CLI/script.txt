@@ -1,0 +1,9 @@
+az appservice plan create -g template-rg -n plan787878 --sku F1 --l "North Europe"
+
+az webapp create -g template-rg -p plan787878 -n boniton86 --runtime "dotnet:6"
+
+az webapp list-runtimes
+
+az sql server create --name sqlserver240586 --resource-group template-rg --location "North Europe" --admin-user sqlusr --admin-password <password>
+
+az sql db create --resource-group template-rg --server sqlserver240586 --name appdb --service-objective "Basic"

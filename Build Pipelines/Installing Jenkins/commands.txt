@@ -1,0 +1,36 @@
+https://medium.com/@ranjith_99360/how-to-install-jenkins-on-ubuntu-22-04-17b99fd41678
+https://navyadevops.hashnode.dev/how-to-install-jenkins-on-ubuntu-2204
+
+# Follow thw above
+
+sudo apt-get install openjdk-11-jdk-headless
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins
+sudo ufw allow 8080 # allow traffic via firewall on port 8080
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+sudo -s
+
+
+
+sudo apt update
+sudo apt install git
+git --version
+
+wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+sudo apt-get update && \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-6.0
+
+sudo systemctl stop jenkins
+sudo systemctl start jenkins
+
+sudo chmod -R a+rwx /var/lib/jenkins/
+
+sudo chmod -R a+rwx /tmp/NuGetScratch/

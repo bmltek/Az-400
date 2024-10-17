@@ -1,0 +1,50 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "SQLLogin": {
+            "type": "string",
+            "metadata": {
+                "description": "The administrator user name"
+            }
+        },
+        "SQLPassword": {
+           "type": "securestring",
+           "metadata": {
+            "description": "The Administrator Password"
+           }
+        }
+        
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "boniton",
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2021-11-01",
+            "location": "[resourceGroup().location]",
+            
+            "properties": {
+                "administratorLogin": "[parameters('SQLLogin')]",
+                "administratorLoginPassword": "[parameters('SQLPassword')]"
+            }
+        },
+        {
+            "name": "[format('{0}/{1}','boniton','boniton')]",
+            "type": "Microsoft.Sql/servers/databases",
+            "apiVersion": "2021-11-01",
+            "location": "[resourceGroup().location]",
+            "sku":{
+               "name": "Basic",
+               "tier": "Basic"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', 'boniton')]"
+            ],
+            "properties": {}
+            
+        }
+    ],
+    "outputs": {}
+}

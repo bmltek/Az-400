@@ -1,0 +1,80 @@
+1. Azure CLI - Storage account
+
+az storage account create -g template-rg -n owaspstore22241986 -l northeurope --sku Standard_LRS
+az storage share create -n security --account-name owaspstore22241986
+
+2. Azure CLI - Container Instance
+# Retrieve the storage account Access key
+az storage account keys list -g template-rg --account-name owaspstore22241986 --query "[0].value" --output tsv > temp.txt
+$content = Get-Content temp.txt -First 1
+$key = '"{0}"' -f $content
+Write-Output $key
+
+# Set the URL of webapp that we want to test
+# Change url based on your Azure webapp url
+echo "https://boniton86.azurewebsites.net" > url.txt
+$url = Get-Content url.txt -First 1
+$completeurl = '"{0}"' -f $url
+
+# Define the ZAP command
+# Call the zap baseline application that is going to run within the container
+# OWASP-ZAP-Report.xml: This is the name of the report that need to be generated
+# testreport.html: this is the html format test report
+# File share name: security
+# The file share is mounted to /zap/wrk directory on the container instance
+$ZAP_COMMAND = "zap-baseline.py -t $completeurl -x OWASP-ZAP-Report.xml -r testreport.html"
+
+# Run the az container create command with the updated image
+az container create `
+    --resource-group template-rg `
+    --name owasp `
+    --image ghcr.io/zaproxy/zaproxy:stable `
+    --ip-address public `
+    --ports 8080 `
+    --azure-file-volume-account-name owaspstore22241986 `
+    --azure-file-volume-account-key $content `
+    --azure-file-volume-share-name security `
+    --azure-file-volume-mount-path "/zap/wrk" `
+    --command-line $ZAP_COMMAND `
+    --restart-policy Never
+
+3. Azure CLI - Download Report
+
+# Wait for 30 seconds
+Start-Sleep -Seconds 30
+
+# Retrieve the storage account key and store it in temp.txt
+az storage account keys list -g template-rg --account-name owaspstore22241986 --query "[0].value" --output tsv > temp.txt
+
+# Read the content of temp.txt and format it as needed
+$content = Get-Content temp.txt -First 1
+$key = $content.Trim()  # Remove any extra whitespace or new lines
+
+# Define the destination path for the downloaded file
+$destinationPath = Join-Path $env:SYSTEM_DEFAULTWORKINGDIRECTORY "OWASP-ZAP-Report.xml"
+
+# Download the file from the Azure File Share
+az storage file download --account-name owaspstore22241986 --account-key $key -s security -p OWASP-ZAP-Report.xml --dest $destinationPath
+
+
+4. PowerShell Script - Convert Report
+
+$XslPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\_sqldatabase (24)\xslt-artifact\OWASPToNUnit3.xslt"
+$XmlInputPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\OWASP-ZAP-Report.xml"
+$XmlOutputPath = "$($Env:SYSTEM_DEFAULTWORKINGDIRECTORY)\Converted-OWASP-ZAP-Report.xml"
+$XslTransform = New-Object System.Xml.Xsl.XslCompiledTransform
+$XslTransform.Load($XslPath)
+$XslTransform.Transform($XmlInputPath, $XmlOutputPath) 
+
+5. Test result format = NUnit
+Test results files = Converted-OWASP-ZAP-Report.xml
+
+## You need to complete the pipeline to configure OWASP ZAP for security testing, which five azure CLI tasks should you add in sequence?
+- Azure web app deploy
+- Azure cli - Storage Account create
+- Azure cli - Create container instance
+- Azure cli - call the Baseline scan
+- azure cil - Download the file/ Download report
+- powershell script - Convert Report format
+- Publish Test results
+- Destroy OWASP Container

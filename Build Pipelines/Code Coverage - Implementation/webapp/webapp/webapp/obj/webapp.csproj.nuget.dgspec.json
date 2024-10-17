@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\2022\\Azure-Final\\AZ-400\\Base\\4. Design and implement build and release pipelines\\100. Code\\25. Code Coverage - Implementation\\webapp\\webapp\\webapp.csproj": {}
+  },
+  "projects": {
+    "C:\\2022\\Azure-Final\\AZ-400\\Base\\4. Design and implement build and release pipelines\\100. Code\\25. Code Coverage - Implementation\\webapp\\webapp\\webapp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\2022\\Azure-Final\\AZ-400\\Base\\4. Design and implement build and release pipelines\\100. Code\\25. Code Coverage - Implementation\\webapp\\webapp\\webapp.csproj",
+        "projectName": "webapp",
+        "projectPath": "C:\\2022\\Azure-Final\\AZ-400\\Base\\4. Design and implement build and release pipelines\\100. Code\\25. Code Coverage - Implementation\\webapp\\webapp\\webapp.csproj",
+        "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
+        "outputPath": "C:\\2022\\Azure-Final\\AZ-400\\Base\\4. Design and implement build and release pipelines\\100. Code\\25. Code Coverage - Implementation\\webapp\\webapp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
