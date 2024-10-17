@@ -1,9 +1,5 @@
-# links to Resources
-
+# Azure Test Plan
 [Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops)
-
-
-## Azure Test Plans
 
 - The below testing can be carried out:
 
@@ -20,6 +16,7 @@ Capture test results
 
 **Stakeholder** can only perform exploratory testing with the Test and feedback extension.
 **Basic** - We can `Test execution`, `perform exploratory testing with the Test and feedback extension`, `Analyze and review tests`.
+
 **Basic + Test Plans** -> can do all that `Basic` can do with `Test planning`
 
 **Test Execution** - Run tests on any platform with Test runner.
