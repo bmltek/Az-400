@@ -20,6 +20,7 @@ Capture test results
 
 **Stakeholder** can only perform exploratory testing with the Test and feedback extension.
 **Basic** - We can `Test execution`, `perform exploratory testing with the Test and feedback extension`, `Analyze and review tests`.
+
 **Basic + Test Plans** -> can do all that `Basic` can do with `Test planning`
 
 **Test Execution** - Run tests on any platform with Test runner.
