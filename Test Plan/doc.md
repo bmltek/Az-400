@@ -1,5 +1,4 @@
-# links to Resources
-
+# Azure Test Plan
 [Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops)
 
 
