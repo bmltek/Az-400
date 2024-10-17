@@ -1,9 +1,6 @@
 # Azure Test Plan
 [Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops)
 
-
-## Azure Test Plans
-
 - The below testing can be carried out:
 
 Planned Manual testings
