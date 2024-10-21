@@ -24,8 +24,11 @@ The azure monitor uses machine learning to check the historical behavior of metr
 Based on the historical data, it can then identify patterns and anomalies that could indicate possible issues.
 
 `Azure-Monitor Sensitivity`- When defining dynamic threshold, we can choose the sensitivity.
+
 `High` - Here the alert rule will be triggered even for the smallest deviation.
+
 `medium` - here you have more balanced thresholds and fewer alerts will be generated.
+
 `Low` - Here alerts will only triggered on large deviations.
 
 monitor -> alerts -> create -> alert rule -> select a resource -> select a signal -> metrics -> Cpu percentage -> threshold (dynamic) operator `greater or less than` Aggregation type `Average` threshold Sensitivity `Medium` ( we are not puting static value`)
@@ -56,6 +59,7 @@ Event
 ## Service Map Solution
 
 `Discovery:` This solution helps to discover application components on windows and linux based systems.
+
 `Information:` You can see information such as connections between servers, latency for connections etc.
 Before you can use this solution, your machines that are going to be part of service map needs to be connected to log analytics workspace.
 The machines also need to have `dependency agent` installed on them. 
@@ -119,7 +123,8 @@ After some times, you will get notification that the capacity of your instance i
 
 ## Configure and integrate with monitoring tools such as Application Insights
 
-This provides the feature of application performance management and monitoring of live web applications.
+This provides the feature of **application performance management and monitoring of live web applications.**
+
 Its help to detect performance issues or any other issues.
 Its support pyton, Node.js, Java, .NET.
 This works for applications hosted on azures, on-premises environments or other cloud platforms.
@@ -150,14 +155,21 @@ We have two types of availability test:
 
 We get live telementry data from Application Insights
 
-`Users` - Here you can see how many people have used your application and its features.
-`Session` - You can see sessions of user activity. This includes certain pages and features of the applications.
-`Events` - This gives a view of how often certain pages and features have been used in the application.
-`Funnels` - Here you can have multiple stages like a pipeline. and then you can see how users are progressing through your application as an entire process.
-`Cohorts` - This is a set of users, sessions, events or operations that have something in common. It helps to analyze a particular set of users or events.
-`Impact:` Here you can see how the low times and other aspects of your application impact the conversion rate of the application itself.
-`Retention`: Here you can analyze how many users return back to your application.
-`User Flows:` This helps in answering questions such as:
+**Users** - Here you can see how many people have used your application and its features.
+
+**Session** - You can see sessions of user activity. This includes certain pages and features of the applications.
+
+**Events** - This gives a view of how often certain pages and features have been used in the application.
+
+**Funnels** - Here you can have multiple stages like a pipeline. and then you can see how users are progressing through your application as an entire process.
+
+**Cohorts** - This is a set of users, sessions, events or operations that have something in common. It helps to analyze a particular set of users or events.
+
+**Impact:** Here you can see how the low times and other aspects of your application impact the conversion rate of the application itself.
+
+**Retention:** Here you can analyze how many users return back to your application.
+
+**User Flows:** This helps in answering questions such as:
 
 - what do users click on a page within the application?
 - Where are the places within the application the users churn out the most in the site?
